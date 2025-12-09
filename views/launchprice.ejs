@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include ("./partials/head.ejs") %>
+
+  <body>
+    <%- include ("./partials/nav.ejs") %>
+    <div class="card w-75 mx-auto">
+      <div class="card-body text-center">
+        <h1>Amount of Games per price range</h1>
+        <canvas id="myChart"></canvas>
+        <%- include ("./partials/footer.ejs") %>
+      </div>
+    </div>
+    <script>
+      fetch("/games")
+        .then((res) => res.json())
+        .then((games) => {
+          //easier to use price ranges so there is not to much variety
+          const priceRanges = {
+            "0-20": 0,
+            "21-40": 0,
+            "41-60": 0,
+            "61-80": 0,
+            "81+": 0,
+          };
+
+          games.forEach((g) => {
+            const price = g.launchPrice;
+
+            if (price <= 20) priceRanges["0-20"]++;
+            else if (price <= 40) priceRanges["21-40"]++;
+            else if (price <= 60) priceRanges["41-60"]++;
+            else if (price <= 80) priceRanges["61-80"]++;
+            else priceRanges["81+"]++;
+          });
+
+          new Chart(myChart, {
+            type: "line",
+            data: {
+              labels: Object.keys(priceRanges),
+              datasets: [
+                {
+                  label: "Games by Price Range",
+                  data: Object.values(priceRanges),
+                },
+              ],
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  ticks: {
+                    stepSize: 1,
+                  },
+                },
+              },
+            },
+          });
+        });
+    </script>
+  </body>
+</html>

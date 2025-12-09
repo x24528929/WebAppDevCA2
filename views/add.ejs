@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include ("./partials/head.ejs") %>
+
+  <body>
+    <%- include ("./partials/nav.ejs") %>
+    <div class="container">
+      <div class="row">
+        <div class="col"></div>
+      </div>
+      <div class="row">
+        <div class="col-8 mx-auto">
+          <div class="card">
+            <div class="card-body mx-auto text-center">
+              <form action="/" method="POST">
+                <h3 class="title">Add a game to the library!</h3>
+                <label class="addLbl">Title</label><br />
+                <input type="text" required name="title" id="" /><br />
+                <br />
+                <label class="addLbl">Year Made</label><br />
+                <input type="number" required name="yearMade" id="" /><br />
+                <br />
+                <label class="addLbl">Genre</label><br />
+
+                <input type="text" required name="genre" id="" /><br />
+                <br />
+                <label class="addLbl">Studio</label><br />
+
+                <input type="text" required name="studio" id="" /><br />
+                <br />
+                <label class="addLbl">Country</label><br />
+
+                <input type="text" required name="country" id="" /><br />
+                <br />
+                <label class="addLbl">Launch Price</label><br />
+
+                <input type="number" required name="launchPrice" id="" /><br />
+                <br />
+                <button>Add Game</button>
+                <%- include ("./partials/footer.ejs") %>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col"></div>
+      </div>
+    </div>
+  </body>
+</html>

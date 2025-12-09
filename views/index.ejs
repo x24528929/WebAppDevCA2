@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include ("./partials/head.ejs") %>
+
+  <body>
+    <%- include ("./partials/nav.ejs") %>
+    <div class="container">
+      <div class="row">
+        <div class="col"></div>
+      </div>
+      <div class="row">
+        <div class="col-8 mx-auto">
+          <div class="card text-center">
+            <div class="card-body mx-auto">
+              <h1>Welcome to my GameLibrary App website!</h1>
+              <h3>My Games added so far...</h3>
+              <% if (games.length) { games.forEach(game=> { %>
+              <a href="/<%=game._id %>">
+                <h2><%= game.title%></h2>
+                <p class="yearMade">Year Made: <%= game.yearMade%></p>
+                <p class="genre">Genre: <%= game.genre%></p>
+                <p class="studio">Studio: <%= game.studio%></p>
+                <p class="country">Country: <%= game.country%></p>
+                <p class="launchPrice">Launch Price: €<%= game.launchPrice%></p>
+              </a>
+              <hr />
+              <% }); }else {%>
+              <p>Sorry, there are no games yet..</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% }%> <%- include ("./partials/footer.ejs") %>
+  </body>
+</html>

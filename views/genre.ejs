@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include ("./partials/head.ejs") %>
+
+  <body>
+    <%- include ("./partials/nav.ejs") %>
+    <div class="card w-25 mx-auto">
+      <div class="card-body text-center">
+        <h1>Games by Genre</h1>
+        <canvas id="myChart"></canvas>
+        <%- include ("./partials/footer.ejs") %>
+      </div>
+    </div>
+    <script>
+      fetch("/games")
+        .then((res) => res.json())
+        .then((games) => {
+          const genres = [];
+          const counts = [];
+
+          games.forEach((g) => {
+            const genre = g.genre;
+            let found = false;
+
+            // check if genre already exists
+            for (let i = 0; i < genres.length; i++) {
+              if (genres[i] === genre) {
+                counts[i]++;
+                found = true;
+                break;
+              }
+            }
+
+            // if not found, add it
+            if (!found) {
+              genres.push(genre);
+              counts.push(1);
+            }
+          });
+
+          new Chart(myChart, {
+            type: "pie",
+            data: {
+              labels: genres,
+              datasets: [{ label: "Games per Genre", data: counts }],
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  ticks: {
+                    stepSize: 1,
+                  },
+                },
+              },
+            },
+          });
+        });
+    </script>
+  </body>
+</html>

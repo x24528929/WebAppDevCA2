@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("./partials/head.ejs") %>
+  <body>
+    <%- include ("./partials/nav.ejs") %>
+    <div class="container">
+      <div class="row">
+        <div class="col"></div>
+      </div>
+      <div class="row">
+        <div class="col-8 mx-auto">
+          <div class="card text-center">
+            <div class="card-body mx-auto">
+              <div id="viewGame">
+                <h3>Game details</h3>
+                <h2><%= game.title %></h2>
+                <p class="yearMade">Year Made: <%= game.yearMade %></p>
+                <p>Genre: <%= game.genre %></p>
+                <p>Studio: <%= game.studio %></p>
+                <p>Country: <%= game.country %></p>
+                <p>Launch Price: <%= game.launchPrice %></p>
+                <p>Created on: <%= game.createdAt %></p>
+                <p>Updated on: <%= game.updatedAt %></p>
+                <button id="deleteBtn" data-id="<%=game._id%>">
+                  Delete Game
+                </button>
+                <button id="editBtn">Edit Game</button>
+              </div>
+              <div id="editGame" hidden>
+                <h3>edit Game details</h3>
+                <form action="/<%= game._id %>" method="post">
+                  <label>Title</label><br />
+                  <input
+                    type="text"
+                    required
+                    name="title"
+                    id=""
+                    value="<%= game.title %>"
+                  /><br />
+                  <label>Year Made</label><br />
+                  <input
+                    type="number"
+                    required
+                    name="yearMade"
+                    id=""
+                    value="<%= game.yearMade %>"
+                  /><br />
+                  <label>Genre</label><br />
+                  <input
+                    type="text"
+                    required
+                    name="genre"
+                    id=""
+                    value="<%= game.genre %>"
+                  /><br />
+                  <label>Studio</label><br />
+                  <input
+                    type="text"
+                    required
+                    name="studio"
+                    id=""
+                    value="<%= game.studio %>"
+                  /><br />
+                  <label>Country</label><br />
+                  <input
+                    type="text"
+                    required
+                    name="country"
+                    id=""
+                    value="<%= game.country %>"
+                  /><br />
+                  <label>Launch Price</label><br />
+                  <input
+                    type="number"
+                    required
+                    name="launchPrice"
+                    id=""
+                    value="<%= game.launchPrice %>"
+                  /><br />
+                  <button id="saveBtn">Save Game</button>
+                </form>
+              </div>
+              <%-include("./partials/footer.ejs") %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col"></div>
+      </div>
+    </div>
+
+    <script>
+      const deleteBtnElement = document.getElementById("deleteBtn");
+      const viewGameDivElement = document.getElementById("viewGame");
+      const editGameDivElement = document.getElementById("editGame");
+      const editBtnElement = document.getElementById("editBtn");
+      const saveBtnElement = document.getElementById("saveBtn");
+      deleteBtnElement.addEventListener("click", (e) => {
+        const backEndPoint = `/${deleteBtnElement.dataset.id}`;
+        fetch(backEndPoint, { method: "DELETE" })
+          .then((response) => response.json())
+          .then(
+            (responseJson) => (window.location.href = responseJson.redirect)
+          )
+          .catch((error) => console.log(error));
+      });
+      editBtnElement.addEventListener("click", (e) => {
+        viewGameDivElement.style.display = "none";
+        editGameDivElement.removeAttribute("hidden");
+        editGameDivElement.style.display = "block";
+      });
+      saveBtnElement.addEventListener("click", (e) => {
+        viewGameDivElement.style.display = "block";
+        editGameDivElement.style.display = "none";
+      });
+    </script>
+  </body>
+</html>

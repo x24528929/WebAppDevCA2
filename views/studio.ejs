@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include ("./partials/head.ejs") %>
+
+  <body>
+    <%- include ("./partials/nav.ejs") %>
+    <div class="card w-25 mx-auto">
+      <div class="card-body text-center">
+        <h1>Games by Studio</h1>
+        <canvas id="myChart"></canvas>
+        <%- include ("./partials/footer.ejs") %>
+      </div>
+    </div>
+    <script>
+      fetch("/games")
+        .then((res) => res.json())
+        .then((games) => {
+          const studios = [];
+          const counts = [];
+
+          games.forEach((g) => {
+            const studioName = g.studio;
+            let found = false;
+
+            // check if genre already exists
+            for (let i = 0; i < studios.length; i++) {
+              if (studios[i] === studioName) {
+                counts[i]++;
+                found = true;
+                break;
+              }
+            }
+
+            // if not found, add it
+            if (!found) {
+              studios.push(studioName);
+              counts.push(1);
+            }
+          });
+
+          new Chart(myChart, {
+            type: "polarArea",
+            data: {
+              labels: studios,
+              datasets: [{ label: "Games per Studio", data: counts }],
+            },
+            options: {
+              scales: {
+                r: {
+                  beginAtZero: true,
+                  ticks: {
+                    stepSize: 1,
+                  },
+                },
+              },
+            },
+          });
+        });
+    </script>
+  </body>
+</html>

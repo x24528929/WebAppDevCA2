@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include ("./partials/head.ejs") %>
+
+  <body>
+    <%- include ("./partials/nav.ejs") %>
+    <div class="card w-25 mx-auto">
+      <div class="card-body text-center">
+        <h4>Games made per different countries</h4>
+        <canvas id="myChart"></canvas>
+        <%- include ("./partials/footer.ejs") %>
+      </div>
+    </div>
+    <script>
+      fetch("/games")
+        .then((res) => res.json())
+        .then((games) => {
+          const countries = [];
+          const counts = [];
+
+          games.forEach((g) => {
+            const countryName = g.country;
+            let found = false;
+
+            // check if genre already exists
+            for (let i = 0; i < countries.length; i++) {
+              if (countries[i] === countryName) {
+                counts[i]++;
+                found = true;
+                break;
+              }
+            }
+
+            // if not found, add it
+            if (!found) {
+              countries.push(countryName);
+              counts.push(1);
+            }
+          });
+
+          new Chart(myChart, {
+            type: "radar",
+            data: {
+              labels: countries,
+              datasets: [{ label: "Games per Country", data: counts }],
+            },
+            options: {
+              scales: {
+                r: {
+                  beginAtZero: true,
+                  ticks: {
+                    display: true,
+                    stepSize: 1,
+                  },
+                },
+              },
+            },
+          });
+        });
+    </script>
+  </body>
+</html>

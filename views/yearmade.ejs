@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include ("./partials/head.ejs") %>
+
+  <body>
+    <%- include ("./partials/nav.ejs") %>
+    <div class="card w-75 mx-auto">
+      <div class="card-body text-center">
+        <h5>Year Made Chart - Shows the amount of games made by year.</h5>
+        <canvas id="myChart"></canvas>
+        <%- include ("./partials/footer.ejs") %>
+      </div>
+    </div>
+    <script>
+      fetch("/games")
+        .then((result) => result.json())
+        .then((games) => {
+          const years = [];
+          const counts = [];
+
+          games.forEach((g) => {
+            const year = g.yearMade;
+            let found = false;
+            //this loop is to check if the year already exists
+            for (let i = 0; i < years.length; i++) {
+              if (years[i] == year) {
+                counts[i]++;
+                found = true;
+                break;
+              }
+            }
+            if (!found) {
+              years.push(year);
+              counts.push(1);
+            }
+          });
+
+          new Chart(myChart, {
+            type: "bar",
+            data: {
+              labels: years,
+              datasets: [{ label: "Games published", data: counts }],
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  ticks: {
+                    stepSize: 1,
+                  },
+                },
+              },
+            },
+          });
+        });
+    </script>
+  </body>
+</html>
