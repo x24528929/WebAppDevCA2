@@ -1,8 +1,16 @@
 <!--404 page incase they enter wrong route-->
 <!DOCTYPE html>
 <html lang="en">
+  <!--Include the head-->
+  <%- include ("./partials/head.ejs") %>
   <body>
-    <h1>404</h1>
-    <h3>Ooops, content not found...</h3>
+    <!--Include the nav-->
+    <%- include ("./partials/nav.ejs") %>
+    <div class="card">
+      <div class="card-body mx-auto">
+        <h1>404</h1>
+        <h3>Ooops, content not found...</h3>
+      </div>
+    </div>
   </body>
 </html>

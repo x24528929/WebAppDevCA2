@@ -17,7 +17,7 @@
               <h3 class="title">My Games added so far...</h3>
               <!--This is to display each game in the database, reference @eugene slides-->
               <% if (games.length) { games.forEach(game=> { %>
-              <a class="mainGame" href="/<%=game._id %>">
+              <a class="mainGame" href="/game/<%=game._id %>">
                 <h2><%= game.title%></h2>
                 <p class="mainLbl">Year Made: <%= game.yearMade%></p>
                 <p class="mainLbl">Genre: <%= game.genre%></p>

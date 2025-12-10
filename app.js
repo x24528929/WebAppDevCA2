@@ -105,8 +105,8 @@ app.post("/", (request, response) => {
     .catch((error) => console.log(error));
 });
 
-//display single game details -- commented out for debugging
-app.get("/:id", (request, response) => {
+//display single game details -- commented out for debugging - catching everything and 404 will not load
+/*app.get("/:id", (request, response) => {
   const id = request.params.id;
 
   Game.findById(id)
@@ -114,7 +114,7 @@ app.get("/:id", (request, response) => {
       response.render("game", { game: result, title: "Game details" })
     )
     .catch((error) => console.log(error));
-});
+});*/
 
 //delete request handler
 app.delete("/:id", (request, response) => {
@@ -143,16 +143,19 @@ app.post("/:id", (request, response) => {
     .catch((error) => console.log(error));
 });
 
+//get single game by id
+app.get("/game/:id", (request, response) => {
+  const id = request.params.id;
+  Game.findById(id)
+    .then((result) =>
+      response.render("game", { game: result, title: "Game details" })
+    )
+    .catch((error) => console.log(error));
+});
+
 //404 page
 app.use((request, response) => {
   response.status(404).render("404", { title: "404" });
-});
-
-//get single game by id
-app.get("/game/:id", (request, response) => {
-  Game.findById(request.params.id)
-    .then((result) => response.send(result))
-    .catch((error) => console.log(error));
 });
 
 //connect to mongoose and then launch app
