@@ -12,24 +12,24 @@
           <div class="card text-center">
             <div class="card-body mx-auto">
               <div id="viewGame">
-                <h3>Game details</h3>
-                <h2><%= game.title %></h2>
-                <p class="yearMade">Year Made: <%= game.yearMade %></p>
-                <p>Genre: <%= game.genre %></p>
-                <p>Studio: <%= game.studio %></p>
-                <p>Country: <%= game.country %></p>
-                <p>Launch Price: <%= game.launchPrice %></p>
-                <p>Created on: <%= game.createdAt %></p>
-                <p>Updated on: <%= game.updatedAt %></p>
+                <h3 class="title">Game details</h3>
+                <h2 class="editTitle"><%= game.title %></h2>
+                <p class="edit">Year Made: <%= game.yearMade %></p>
+                <p class="edit">Genre: <%= game.genre %></p>
+                <p class="edit">Studio: <%= game.studio %></p>
+                <p class="edit">Country: <%= game.country %></p>
+                <p class="edit">Launch Price: <%= game.launchPrice %></p>
+                <p class="edit">Created on: <%= game.createdAt %></p>
+                <p class="edit">Updated on: <%= game.updatedAt %></p>
+                <button id="editBtn">Edit Game</button>
                 <button id="deleteBtn" data-id="<%=game._id%>">
                   Delete Game
                 </button>
-                <button id="editBtn">Edit Game</button>
               </div>
               <div id="editGame" hidden>
-                <h3>edit Game details</h3>
+                <h3 class="title">edit Game details</h3>
                 <form action="/<%= game._id %>" method="post">
-                  <label>Title</label><br />
+                  <label class="addLbl">Title</label><br />
                   <input
                     type="text"
                     required
@@ -37,7 +37,7 @@
                     id=""
                     value="<%= game.title %>"
                   /><br />
-                  <label>Year Made</label><br />
+                  <label class="addLbl">Year Made</label><br />
                   <input
                     type="number"
                     required
@@ -45,7 +45,7 @@
                     id=""
                     value="<%= game.yearMade %>"
                   /><br />
-                  <label>Genre</label><br />
+                  <label class="addLbl">Genre</label><br />
                   <input
                     type="text"
                     required
@@ -53,7 +53,7 @@
                     id=""
                     value="<%= game.genre %>"
                   /><br />
-                  <label>Studio</label><br />
+                  <label class="addLbl">Studio</label><br />
                   <input
                     type="text"
                     required
@@ -61,7 +61,7 @@
                     id=""
                     value="<%= game.studio %>"
                   /><br />
-                  <label>Country</label><br />
+                  <label class="addLbl">Country</label><br />
                   <input
                     type="text"
                     required
@@ -69,7 +69,7 @@
                     id=""
                     value="<%= game.country %>"
                   /><br />
-                  <label>Launch Price</label><br />
+                  <label class="addLbl">Launch Price</label><br />
                   <input
                     type="number"
                     required
@@ -77,6 +77,7 @@
                     id=""
                     value="<%= game.launchPrice %>"
                   /><br />
+                  <br />
                   <button id="saveBtn">Save Game</button>
                 </form>
               </div>

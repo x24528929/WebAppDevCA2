@@ -12,16 +12,16 @@
         <div class="col-8 mx-auto">
           <div class="card text-center">
             <div class="card-body mx-auto">
-              <h1>Welcome to my GameLibrary App website!</h1>
-              <h3>My Games added so far...</h3>
+              <h1 class="title">Welcome to my GameLibrary App website!</h1>
+              <h3 class="title">My Games added so far...</h3>
               <% if (games.length) { games.forEach(game=> { %>
-              <a href="/<%=game._id %>">
+              <a class="mainGame" href="/<%=game._id %>">
                 <h2><%= game.title%></h2>
-                <p class="yearMade">Year Made: <%= game.yearMade%></p>
-                <p class="genre">Genre: <%= game.genre%></p>
-                <p class="studio">Studio: <%= game.studio%></p>
-                <p class="country">Country: <%= game.country%></p>
-                <p class="launchPrice">Launch Price: €<%= game.launchPrice%></p>
+                <p class="mainLbl">Year Made: <%= game.yearMade%></p>
+                <p class="mainLbl">Genre: <%= game.genre%></p>
+                <p class="mainLbl">Studio: <%= game.studio%></p>
+                <p class="mainLbl">Country: <%= game.country%></p>
+                <p class="mainLbl">Launch Price: €<%= game.launchPrice%></p>
               </a>
               <hr />
               <% }); }else {%>

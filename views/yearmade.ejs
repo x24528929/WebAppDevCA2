@@ -4,9 +4,11 @@
 
   <body>
     <%- include ("./partials/nav.ejs") %>
-    <div class="card w-75 mx-auto">
+    <div class="card w-50 mx-auto">
       <div class="card-body text-center">
-        <h5>Year Made Chart - Shows the amount of games made by year.</h5>
+        <h5 class="titleChart">
+          Year Made Chart - Shows the amount of games made by year.
+        </h5>
         <canvas id="myChart"></canvas>
         <%- include ("./partials/footer.ejs") %>
       </div>
