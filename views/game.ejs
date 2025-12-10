@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+  <!--Include the head-->
   <%- include("./partials/head.ejs") %>
   <body>
+    <!--Include the nav-->
     <%- include ("./partials/nav.ejs") %>
     <div class="container">
       <div class="row">
@@ -11,6 +13,7 @@
         <div class="col-8 mx-auto">
           <div class="card text-center">
             <div class="card-body mx-auto">
+              <!-- section that pops up normally and disappears when edit is clicked-->
               <div id="viewGame">
                 <h3 class="title">Game details</h3>
                 <h2 class="editTitle"><%= game.title %></h2>
@@ -26,8 +29,10 @@
                   Delete Game
                 </button>
               </div>
+              <!-- section that shows once edit is clicked-->
               <div id="editGame" hidden>
                 <h3 class="title">edit Game details</h3>
+                <!-- This sends the id and form back to the app-->
                 <form action="/<%= game._id %>" method="post">
                   <label class="addLbl">Title</label><br />
                   <input
@@ -81,6 +86,7 @@
                   <button id="saveBtn">Save Game</button>
                 </form>
               </div>
+              <!--Include the footer-->
               <%-include("./partials/footer.ejs") %>
             </div>
           </div>
@@ -92,25 +98,30 @@
     </div>
 
     <script>
+      //This is the logic behind the buttons
       const deleteBtnElement = document.getElementById("deleteBtn");
       const viewGameDivElement = document.getElementById("viewGame");
       const editGameDivElement = document.getElementById("editGame");
       const editBtnElement = document.getElementById("editBtn");
       const saveBtnElement = document.getElementById("saveBtn");
+      //to delete a game
       deleteBtnElement.addEventListener("click", (e) => {
         const backEndPoint = `/${deleteBtnElement.dataset.id}`;
         fetch(backEndPoint, { method: "DELETE" })
           .then((response) => response.json())
+          //after deleted it redirects you to main page
           .then(
             (responseJson) => (window.location.href = responseJson.redirect)
           )
           .catch((error) => console.log(error));
       });
+      //this is to edit a game, makes one form show and hides another
       editBtnElement.addEventListener("click", (e) => {
         viewGameDivElement.style.display = "none";
         editGameDivElement.removeAttribute("hidden");
         editGameDivElement.style.display = "block";
       });
+      //makes the view game form show again and also posts the new details to database
       saveBtnElement.addEventListener("click", (e) => {
         viewGameDivElement.style.display = "block";
         editGameDivElement.style.display = "none";

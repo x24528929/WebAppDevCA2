@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+  <!--Include the head-->
   <%- include ("./partials/head.ejs") %>
 
   <body>
+    <!--Include the nav bar-->
     <%- include ("./partials/nav.ejs") %>
     <div class="container">
       <div class="row">
@@ -12,6 +14,7 @@
         <div class="col-8 mx-auto">
           <div class="card">
             <div class="card-body mx-auto text-center">
+              <!--Reference @Eugene Slides-->
               <form action="/" method="POST">
                 <h3 class="title">Add a game to the library!</h3>
                 <label class="addLbl">Title</label><br />
@@ -37,6 +40,7 @@
                 <input type="number" required name="launchPrice" id="" /><br />
                 <br />
                 <button id="saveBtn">Add Game</button>
+                <!--Include the footer-->
                 <%- include ("./partials/footer.ejs") %>
               </form>
             </div>

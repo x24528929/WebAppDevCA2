@@ -31,6 +31,7 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
 //route and response
+
 //display all games on the home page
 app.get("/", (request, response) => {
   Game.find()
@@ -66,11 +67,12 @@ app.get("/country", (request, response) => {
   response.render("country", { title: "Sort by country" });
 });
 
-//link to add new game page
+//link to launch price graph
 app.get("/launchprice", (request, response) => {
   response.render("launchprice", { title: "Sort by Launch Price" });
 });
 //insert a test game
+//reference @eugene slides
 app.get("/new-game", (request, response) => {
   const game = new Game({
     title: "Minecraft",
@@ -86,7 +88,7 @@ app.get("/new-game", (request, response) => {
     .catch((error) => console.log(error));
 });
 
-//get all the games as JSON
+//get all the games as JSON, this is used then to display our charts
 app.get("/games", (request, response) => {
   Game.find()
     .then((result) => response.send(result))
@@ -126,12 +128,15 @@ app.delete("/:id", (request, response) => {
 });
 
 //update handler
+//This returns the details from the add.ejs page and stores it back on the database
 app.post("/:id", (request, response) => {
+  //this stores the id paramter from the URL
   const id = request.params.id;
-
+  //mongoose function does a lot of the heavy lifting here, it finds the object by id in the db and then updates
   Game.findOneAndUpdate({ _id: id }, request.body, { new: true })
     .then((result) => {
       Game.findById(id).then((result) =>
+        //after it finds and updates it renders the game.ejs page with the selected game and updated details
         response.render("game", { game: result, title: "Game Details" })
       );
     })

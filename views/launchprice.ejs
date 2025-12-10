@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+  <!--Include the head-->
   <%- include ("./partials/head.ejs") %>
 
   <body>
+    <!--Include the nav-->
     <%- include ("./partials/nav.ejs") %>
     <div class="card w-75 mx-auto">
       <div class="card-body text-center">
         <h1 class="titleChart">Amount of Games per price range</h1>
+        <!--canvas tag for chart .js-->
         <canvas id="myChart"></canvas>
         <%- include ("./partials/footer.ejs") %>
       </div>
     </div>
     <script>
+      //fetch method using the app.get that returns all the data as JSON
       fetch("/games")
         .then((res) => res.json())
         .then((games) => {
@@ -26,14 +30,14 @@
 
           games.forEach((g) => {
             const price = g.launchPrice;
-
+            //logic using if, elif and else to add accordingly depending on price
             if (price <= 20) priceRanges["0-20"]++;
             else if (price <= 40) priceRanges["21-40"]++;
             else if (price <= 60) priceRanges["41-60"]++;
             else if (price <= 80) priceRanges["61-80"]++;
             else priceRanges["81+"]++;
           });
-
+          //this is to create a chart to display the data
           new Chart(myChart, {
             type: "line",
             data: {
@@ -48,6 +52,7 @@
             options: {
               scales: {
                 y: {
+                  //this is to make the step size go up by 1 whole number, before it was going in decinals
                   beginAtZero: true,
                   ticks: {
                     stepSize: 1,

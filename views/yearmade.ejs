@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+  <!--Include the head-->
   <%- include ("./partials/head.ejs") %>
 
   <body>
+    <!--Include the nav-->
     <%- include ("./partials/nav.ejs") %>
     <div class="card w-50 mx-auto">
       <div class="card-body text-center">
         <h5 class="titleChart">
           Year Made Chart - Shows the amount of games made by year.
         </h5>
+        <!--canvas tag for chart .js-->
         <canvas id="myChart"></canvas>
         <%- include ("./partials/footer.ejs") %>
       </div>
     </div>
     <script>
+      //fetch method using the app.get that returns all the data as JSON
       fetch("/games")
         .then((result) => result.json())
         .then((games) => {
+          //using these arrays to display the data, one for the year made and one for how many times it shows up
           const years = [];
           const counts = [];
 
@@ -31,12 +36,13 @@
                 break;
               }
             }
+            // if not found, add it
             if (!found) {
               years.push(year);
               counts.push(1);
             }
           });
-
+          //this is to create a chart to display the data
           new Chart(myChart, {
             type: "bar",
             data: {
@@ -48,6 +54,7 @@
                 y: {
                   beginAtZero: true,
                   ticks: {
+                    //this is to make the step size go up by 1 whole number, before it was going in decinals
                     stepSize: 1,
                   },
                 },

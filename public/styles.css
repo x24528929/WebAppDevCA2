@@ -1,10 +1,12 @@
+/* to change the background color */
 body {
   background-color: #dbeaff !important;
 }
-
+/* to change the size of the text on the main page apart from the title*/
 .mainLbl {
   font-size: 20px;
 }
+/* to change the color, font, size, get rid of the underline for anchor tags and also create an outline for the text on the main page*/
 .mainGame {
   text-decoration: none !important;
   color: white;
@@ -15,6 +17,8 @@ body {
   font-family: "Copperplate Gothic Bold", "Copperplate Gothic", Copperplate,
     fantasy;
 }
+
+/* this it to change the title of the edit game section*/
 .editTitle {
   font-size: 40px;
   color: lightseagreen;
@@ -25,7 +29,7 @@ body {
   font-family: "Copperplate Gothic Bold", "Copperplate Gothic", Copperplate,
     fantasy;
 }
-
+/*this is to change all the other fields on the edit game section */
 .edit {
   font-size: 20px;
   color: white;
@@ -36,25 +40,25 @@ body {
   font-family: "Copperplate Gothic Bold", "Copperplate Gothic", Copperplate,
     fantasy;
 }
-
+/*this is to change the colour of the game that you hover your mouse over */
 .mainGame:hover {
   color: lightseagreen;
 }
-
+/*this is to center the text on each card */
 .card {
   text-align: justify !important;
 }
-
+/*this is to change the color and also give a border to the nav bar */
 .nav {
   background-color: white;
   border-bottom: 3px solid #cdd7d9;
   backdrop-filter: blur(4px);
 }
-
+/* this is to change the color of the link on the nav bar*/
 .nav .nav-link {
   color: black !important;
 }
-
+/*this is to color the background of the text at the top of each chart, also font, size etc */
 .titleChart {
   background-color: #167f7a;
   padding-left: 100px;
@@ -69,6 +73,7 @@ body {
   text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black,
     2px 2px 0 black;
 }
+/*This is to change the background, padding, text size etc of the title of main and add game section */
 .title {
   background-color: #167f7a;
   padding-left: 100px;
@@ -83,7 +88,7 @@ body {
   text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black,
     2px 2px 0 black;
 }
-
+/*To style all the labels for each field on add/edit section */
 .addLbl {
   color: white;
   font-weight: 1000;
@@ -94,11 +99,11 @@ body {
   text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black,
     2px 2px 0 black;
 }
-
+/*this is to change the color when you hover over the nav bar */
 .nav .nav-link:hover {
   color: lightseagreen !important;
 }
-
+/*this is to style the edit button and add button */
 #editBtn {
   border: 4px outset #cdd7d9;
   border-color: #cdd7d9;
@@ -112,7 +117,7 @@ body {
   font-family: "Copperplate Gothic Bold", "Copperplate Gothic", Copperplate,
     fantasy;
 }
-
+/*this is to style the delete button */
 #deleteBtn {
   border: 4px outset #cdd7d9;
   border-color: #cdd7d9;
@@ -126,7 +131,7 @@ body {
   font-family: "Copperplate Gothic Bold", "Copperplate Gothic", Copperplate,
     fantasy;
 }
-
+/* this is to style the save button*/
 #saveBtn {
   border: 4px outset #cdd7d9;
   border-color: #cdd7d9;

@@ -1,20 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+  <!--Include the head-->
   <%- include ("./partials/head.ejs") %>
 
   <body>
+    <!--Include the nav-->
     <%- include ("./partials/nav.ejs") %>
     <div class="card w-25 mx-auto">
       <div class="card-body text-center">
         <h1 class="titleChart">Games by Studio</h1>
+        <!--canvas tag for chart .js-->
         <canvas id="myChart"></canvas>
+        <!--Include the footer-->
         <%- include ("./partials/footer.ejs") %>
       </div>
     </div>
     <script>
+      //fetch method using the app.get that returns all the data as JSON
       fetch("/games")
         .then((res) => res.json())
         .then((games) => {
+          //using these arrays to display the data, one for the studios and one for how many times it shows up
           const studios = [];
           const counts = [];
 
@@ -22,7 +28,7 @@
             const studioName = g.studio;
             let found = false;
 
-            // check if genre already exists
+            // check if studio already exists
             for (let i = 0; i < studios.length; i++) {
               if (studios[i] === studioName) {
                 counts[i]++;
@@ -37,7 +43,7 @@
               counts.push(1);
             }
           });
-
+          //this is to create a chart to display the data
           new Chart(myChart, {
             type: "polarArea",
             data: {
@@ -46,9 +52,11 @@
             },
             options: {
               scales: {
+                //because it is a circular chart there is no x,y it is instead r
                 r: {
                   beginAtZero: true,
                   ticks: {
+                    //this is to make the step size go up by 1 whole number, before it was going in decinals
                     stepSize: 1,
                   },
                 },
