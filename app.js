@@ -1,3 +1,13 @@
+/*--
+ *  add.ejs
+ *   
+ *  Date: 11/12/2025 
+ *
+ * @author Martin Olaru, x24528929
+ * @reference https://moodle2025.ncirl.ie/course/section.php?id=36540
+ *@reference https://moodle2025.ncirl.ie/course/section.php?id=36539
+-*/
+//@reference https://moodle2025.ncirl.ie/course/section.php?id=36539
 const express = require("express");
 const mongoose = require("mongoose");
 
@@ -31,6 +41,7 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
 //route and response
+//@reference https://moodle2025.ncirl.ie/course/section.php?id=36539
 
 //display all games on the home page
 app.get("/", (request, response) => {
@@ -72,7 +83,7 @@ app.get("/launchprice", (request, response) => {
   response.render("launchprice", { title: "Sort by Launch Price" });
 });
 //insert a test game
-//reference @eugene slides
+//@reference https://moodle2025.ncirl.ie/course/section.php?id=36539
 app.get("/new-game", (request, response) => {
   const game = new Game({
     title: "Minecraft",
@@ -89,6 +100,8 @@ app.get("/new-game", (request, response) => {
 });
 
 //get all the games as JSON, this is used then to display our charts
+//@reference https://moodle2025.ncirl.ie/course/section.php?id=36539
+
 app.get("/games", (request, response) => {
   Game.find()
     .then((result) => response.send(result))
@@ -117,6 +130,8 @@ app.post("/", (request, response) => {
 });*/
 
 //delete request handler
+//@reference https://moodle2025.ncirl.ie/course/section.php?id=36540
+
 app.delete("/:id", (request, response) => {
   const id = request.params.id;
 
@@ -126,7 +141,7 @@ app.delete("/:id", (request, response) => {
     })
     .catch((error) => console.log(error));
 });
-
+//@reference https://moodle2025.ncirl.ie/course/section.php?id=36540
 //update handler
 //This returns the details from the add.ejs page and stores it back on the database
 app.post("/:id", (request, response) => {
